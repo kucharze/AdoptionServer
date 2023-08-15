@@ -87,12 +87,6 @@ app.get("/dogs/:id/edit", (req, res) => {
 });
 
 app.put("/dogs/:id", async (req, res) => {
-  //   if (req.body.readyToEat === "on") {
-  //     req.body.readyToEat = true;
-  //   } else {
-  //     req.body.readyToEat = false;
-  //   }
-
   Dogs.findByIdAndUpdate(req.params.id, req.body).then((err, data) => {
     res.redirect("/dogs"); //redirect back to fruits index
   });
@@ -100,7 +94,6 @@ app.put("/dogs/:id", async (req, res) => {
 
 app.post("/dogs", async (req, res) => {
   await Dogs.create(req.body);
-  //await res.send(newFruit);
   //console.log(fruits);
   res.redirect("/dogs");
 });
@@ -114,6 +107,17 @@ app.get("/cats", (req, res) => {
 
 app.get("/cats/new", (req, res) => {
   res.render("NewCat");
+});
+
+app.post("/cats", async (req, res) => {
+  if (req.body.hadFirstCheckup === "on") {
+    req.body.hadFirstCheckup = true;
+  } else {
+    req.body.hadFirstCheckup = false;
+  }
+
+  await Cats.create(req.body);
+  res.redirect("/cats");
 });
 
 app.listen("3000", () => {
