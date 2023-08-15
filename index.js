@@ -50,12 +50,16 @@ app.get("/", (req, res) => {
 
 //Dog routes
 app.get("/dogs", (req, res) => {
-  res.send("<h1>Browse Dogs</h1>");
+  Dogs.find({}).then((allDogs) => {
+    res.render("DogIndex", { dogs: allDogs });
+  });
 });
 
 //Cat Routes
 app.get("/cats", (req, res) => {
-  res.send("<h1>Browse Cats</h1>");
+  Cats.find({}).then((allCats) => {
+    res.render("CatIndex", { cats: allCats });
+  });
 });
 
 app.listen("3000", () => {
