@@ -33,6 +33,7 @@ app.use((req, res, next) => {
 //Mongoose connection logic
 const Cats = require("./models/Cats");
 const Dogs = require("./models/Dogs");
+const Dog = require("./models/Dogs");
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -49,7 +50,10 @@ app.get("/", (req, res) => {
 });
 
 app.delete("/dogs/:id", (req, res) => {
-  res.send("deleted");
+  Dog.findByIdAndRemove(req.params.id).then((err, data) => {
+    res.redirect("/dogs"); //redirect back to fruits index
+  });
+  //   res.send("deleted");
 });
 
 //Dog routes
@@ -66,7 +70,7 @@ app.get("/dogs/new", (req, res) => {
 });
 
 app.post("/dogs", async (req, res) => {
-  const newFruit = await Dogs.create(req.body);
+  await Dogs.create(req.body);
   //await res.send(newFruit);
   //console.log(fruits);
   res.redirect("/dogs");
