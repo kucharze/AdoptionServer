@@ -8,7 +8,7 @@ function NewDog() {
             Age: <input type="number" name="age" /><br/>
             Description: <input type="text" name="description" /><br/>
             Breed: <input type="text" name="breed" /><br/>
-            <input type="submit" name="" value="Create Fruit"/>
+            <input type="submit" name="" value="Create New Dog"/>
         </form>
     </div>
   )
