@@ -8,6 +8,8 @@ function DogIndex(props) {
         props.dogs.map((dog)=>{
             return (<div>
                 <h1>{dog.name}</h1>
+                <h2>{dog.age}</h2>
+                <h2>{dog.description}</h2>
                 <h2>{dog.breed}</h2>
                 <a href={`/dogs/${dog._id}/edit`}>Edit this tag</a>
                 <form action={`/dogs/${dog._id}?_method=DELETE`} 
