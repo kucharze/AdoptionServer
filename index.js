@@ -30,6 +30,10 @@ app.use((req, res, next) => {
   next(); //allows the next necessary route to run
 });
 
+//Mongoose connection logic
+const Cats = require("./models/Cats");
+const Dogs = require("./models/Dogs");
+
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -37,6 +41,21 @@ mongoose.connect(process.env.MONGO_URI, {
 
 mongoose.connection.once("open", () => {
   console.log("connected to mongo");
+});
+
+//Routes
+app.get("/", (req, res) => {
+  res.send("<h1>Welcome to the animal shelter</h1>");
+});
+
+//Dog routes
+app.get("/dogs", (req, res) => {
+  res.send("<h1>Browse Dogs</h1>");
+});
+
+//Cat Routes
+app.get("/cats", (req, res) => {
+  res.send("<h1>Browse Cats</h1>");
 });
 
 app.listen("3000", () => {
