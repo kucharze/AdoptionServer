@@ -69,6 +69,35 @@ app.get("/dogs/new", (req, res) => {
   res.render("NewDog");
 });
 
+app.get("/dogs/:id/edit", (req, res) => {
+  //Render form
+  Dog.findById(req.params.id).then((foundDog) => {
+    //find the fruit
+    // if (!err) {
+    // console.log(foundDog);
+    res.render("Dogedit", {
+      dog: foundDog, //pass in the found fruit so we can prefill the form
+      //   id: req.params.id,
+    });
+    // } else {
+    //   res.send({ msg: err.message });
+    // }
+  });
+  //   res.render("Dogedit");
+});
+
+app.put("/dogs/:id", async (req, res) => {
+  //   if (req.body.readyToEat === "on") {
+  //     req.body.readyToEat = true;
+  //   } else {
+  //     req.body.readyToEat = false;
+  //   }
+
+  Dogs.findByIdAndUpdate(req.params.id, req.body).then((err, data) => {
+    res.redirect("/dogs"); //redirect back to fruits index
+  });
+});
+
 app.post("/dogs", async (req, res) => {
   await Dogs.create(req.body);
   //await res.send(newFruit);
