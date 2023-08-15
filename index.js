@@ -48,11 +48,28 @@ app.get("/", (req, res) => {
   res.send("<h1>Welcome to the animal shelter</h1>");
 });
 
+app.delete("/dogs/:id", (req, res) => {
+  res.send("deleted");
+});
+
 //Dog routes
 app.get("/dogs", (req, res) => {
   Dogs.find({}).then((allDogs) => {
+    console.log(allDogs);
     res.render("DogIndex", { dogs: allDogs });
   });
+});
+
+app.get("/dogs/new", (req, res) => {
+  //Render form
+  res.render("NewDog");
+});
+
+app.post("/dogs", async (req, res) => {
+  const newFruit = await Dogs.create(req.body);
+  //await res.send(newFruit);
+  //console.log(fruits);
+  res.redirect("/dogs");
 });
 
 //Cat Routes
