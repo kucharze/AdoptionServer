@@ -120,6 +120,13 @@ app.post("/cats", async (req, res) => {
   res.redirect("/cats");
 });
 
+app.delete("/cats/:id", (req, res) => {
+  Cats.findByIdAndRemove(req.params.id).then((err, data) => {
+    res.redirect("/cats"); //redirect back to fruits index
+  });
+  //   res.send("deleted");
+});
+
 app.listen("3000", () => {
   console.log("Listening on port 3000");
 });

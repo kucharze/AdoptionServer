@@ -15,6 +15,10 @@ function CatIndex(props) {
                     <h3>Needs a checkup</h3>
                 }
                 <h3>{cat.description}</h3>
+                <form action={`/cats/${cat._id}?_method=DELETE`} 
+                    method="POST">
+                        <input type="submit" value="DELETE"/>
+                </form>
             </div>
         })
       }
