@@ -16,6 +16,7 @@ function CatIndex(props) {
                     <h3>Needs a checkup</h3>
                 }
                 <h3>{cat.description}</h3>
+                <a href={`/cats/${cat._id}/edit`}>Edit this animal</a>
                 <form action={`/cats/${cat._id}?_method=DELETE`} 
                     method="POST">
                         <input type="submit" value="DELETE"/>
