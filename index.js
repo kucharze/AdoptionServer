@@ -46,7 +46,9 @@ mongoose.connection.once("open", () => {
 
 //Routes
 app.get("/", (req, res) => {
-  res.send("<h1>Welcome to the animal shelter</h1>");
+  res.send(
+    "<h1>Welcome to the animal shelter</h1><a href='/cats'>See cats</a><br/><a href='/dogs'>See dogs</a>"
+  );
 });
 
 app.delete("/dogs/:id", (req, res) => {

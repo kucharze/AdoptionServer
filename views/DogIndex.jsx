@@ -4,6 +4,7 @@ function DogIndex(props) {
   return (
     <div>
       <h1>Browse the list of dogs</h1>
+      <a href="/">Back home</a><br/>
       <a href='/dogs/new'>Add new dog</a>
       {
         props.dogs.map((dog)=>{

@@ -4,6 +4,7 @@ function CatIndex(props) {
   return (
     <div>
       <h1>Browse the list of cats</h1>
+      <a href="/">Back home</a><br/>
       <a href="/cats/new">Add a new cat</a>
       {
         props.cats.map((cat)=>{
