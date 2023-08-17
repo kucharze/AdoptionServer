@@ -127,6 +127,34 @@ app.delete("/cats/:id", (req, res) => {
   //   res.send("deleted");
 });
 
+app.get("/cats/:id/edit", (req, res) => {
+  //Render form
+  Cats.findById(req.params.id).then((foundCat) => {
+    //find the fruit
+    // if (!err) {
+    // console.log(foundDog);
+    res.render("Catedit", {
+      cat: foundCat, //pass in the found fruit so we can prefill the form
+      //   id: req.params.id,
+    });
+    // } else {
+    //   res.send({ msg: err.message });
+    // }
+  });
+  //   res.render("Dogedit");
+});
+
+app.put("/cats/:id", async (req, res) => {
+  if (req.body.hadFirstCheckup === "on") {
+    req.body.hadFirstCheckup = true;
+  } else {
+    req.body.hadFirstCheckup = false;
+  }
+  Cats.findByIdAndUpdate(req.params.id, req.body).then((err, data) => {
+    res.redirect("/cats"); //redirect back to fruits index
+  });
+});
+
 app.listen("3000", () => {
   console.log("Listening on port 3000");
 });
